@@ -1,5 +1,8 @@
 console.log("Rock-Paper-Scissors Game in Javascript");
 
+let COMPUTER_SCORE = 0
+let HUMAN_SCORE = 0
+
 function getComputerChoice(){
 
     let RANDOM = Math.random();
@@ -27,7 +30,7 @@ getComputerChoice();
 
 
 function getHumanChoice(){
-    
+
     let HUMAN_CHOICE = prompt("What is your choice? ROCK, PAPER or SCISSORS?").toUpperCase()
     console.log (HUMAN_CHOICE);
     return HUMAN_CHOICE;
