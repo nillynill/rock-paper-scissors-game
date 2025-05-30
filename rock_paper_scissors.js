@@ -1,24 +1,36 @@
-console.log("Code Of Rock-Paper-Scissors Game in Javascript");
+console.log("Rock-Paper-Scissors Game in Javascript");
 
 function getComputerChoice(){
 
-    let random = Math.random();
-        console.log (random);
+    let RANDOM = Math.random();
+        console.log (RANDOM);
 
-    let computerChoice;
+    let COMPUTER_CHOICE;
 
-        if (random<=0.33){
-            computerChoice = "ROCK";
+        if (RANDOM<=0.33){
+            COMPUTER_CHOICE = "ROCK";
         }
-        else if (random>0.33 && random <=0.66){
-            computerChoice = "PAPER";
+        else if (RANDOM>0.33 && RANDOM <=0.66){
+            COMPUTER_CHOICE = "PAPER";
         }
         else{
-            computerChoice = "SCISSORS";
+            COMPUTER_CHOICE = "SCISSORS";
         }
         
-        console.log(computerChoice);
-        return computerChoice;
+        console.log(COMPUTER_CHOICE);
+        return COMPUTER_CHOICE;
 }
 
 getComputerChoice();
+
+
+
+
+function getHumanChoice(){
+    
+    let HUMAN_CHOICE = prompt("What is your choice? ROCK, PAPER or SCISSORS?").toUpperCase()
+    console.log (HUMAN_CHOICE);
+    return HUMAN_CHOICE;
+}
+
+getHumanChoice();
