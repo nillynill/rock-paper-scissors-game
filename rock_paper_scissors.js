@@ -1,86 +1,102 @@
-console.log("WELCOME TO ROCK-PAPER-SCISSORS GAME IN JAVASCRIPT CONSOLE");
-
 let humanScore = 0;
 let computerScore = 0;
 
-  
-  //Create a function for prompting human player's choice.
-  
-function getHumanChoice() {
 
-    const humanChoice = prompt("What is your choice? ROCK, PAPER or SCISSORS?").toUpperCase();
-    console.log (humanChoice);
-    return humanChoice;
-}
+//Create event listeners to get human player's button choice.
+
+const rockBtn = document.querySelector(".rockBtn");
+rockBtn.addEventListener("click", ()=> {
+    const humanChoice = "ROCK";
+    console.log(humanChoice);
+    const computerChoice = getComputerChoice();
+    console.log(computerChoice);
+    playRound(humanChoice, computerChoice);
+})
+
+const paperBtn = document.querySelector(".paperBtn");
+paperBtn.addEventListener("click", ()=> {
+    const humanChoice = "PAPER";
+    console.log(humanChoice);
+    const computerChoice = getComputerChoice();
+    console.log(computerChoice);
+    playRound(humanChoice, computerChoice);
+})
+
+const scissorsBtn = document.querySelector(".scissorsBtn");
+scissorsBtn.addEventListener("click", ()=> {
+    const humanChoice = "SCISSORS";
+    console.log(humanChoice);
+    const computerChoice = getComputerChoice();
+    console.log(computerChoice);
+    playRound(humanChoice, computerChoice);
+
+})
 
 //Create a function for randomly assigning ROCK, PAPER or SCISSORS to the computer(CPU).
 
 function getComputerChoice() {
-  let random = Math.random();
-  console.log (random);
-
-let computerChoice;
-
-  if (random<=0.33){
-      computerChoice = "ROCK";
-  }
-  else if (random>0.33 && random <=0.66){
-      computerChoice = "PAPER";
-  }
-  else{
-      computerChoice = "SCISSORS";
-  }
+    let random = Math.random();
+    console.log (random);
   
-  console.log(computerChoice);
-  return computerChoice;
-  }
+  let computerChoice;
   
-  
-
-  function playGame(){ //start game, play 5 rounds and declare scores
-  
-     const numberOfRounds = 5
-     for (let i = 1; i <= numberOfRounds; i++) {
-      console.log(`ROUND NUMBER ${i}`);
-    
-
-    function playRound(humanChoice, computerChoice) { //Create a function for simulating one round of play.
-      if (computerChoice === "ROCK" && humanChoice === "PAPER" ||
-        computerChoice === "PAPER" && humanChoice === "SCISSORS" ||
-        computerChoice === "SCISSORS" && humanChoice === "ROCK") { // Win Conditions
-            humanScore++;
-            console.log(`You won this round! Your ${humanChoice} beats CPU's ${computerChoice}.`);
-
-      } else if (computerChoice === humanChoice) { // Tie Condition
-            console.log(`You tied this round! You and the CPU chose ${humanChoice}.`);
-
-      } else if (
-        computerChoice === "PAPER" && humanChoice === "ROCK" ||
-        computerChoice === "SCISSORS" && humanChoice === "PAPER" ||
-        computerChoice === "ROCK" && humanChoice === "SCISSORS"){ // Lose Conditions
-            computerScore++;
-            console.log(`You lost this round! CPU's ${computerChoice} beats your ${humanChoice}.`);
-
-      } else { // Invalid Entry Conditions (for type errors or empty input)
-            computerScore++;
-            console.log(`Invalid entry! You lost this round!.`);
-      }
-  
+    if (random<=0.33){
+        computerChoice = "ROCK";
     }
+    else if (random>0.33 && random <=0.66){
+        computerChoice = "PAPER";
+    }
+    else{
+        computerChoice = "SCISSORS";
+    }
+    return computerChoice;
+    }
+
+
   
-      const humanChoice = getHumanChoice();
-      const computerChoice = getComputerChoice();
-      playRound(humanChoice, computerChoice);
+       
+    function playRound(humanChoice, computerChoice) { //Create a function for simulating one round of play.
 
-      console.log("CURRENT SCORE:");
-      console.log(`YOU: ${humanScore}`);
-      console.log(`CPU: ${computerScore}`);
-  }
-}
+        if (computerChoice === "ROCK" && humanChoice === "PAPER" ||
+          computerChoice === "PAPER" && humanChoice === "SCISSORS" ||
+          computerChoice === "SCISSORS" && humanChoice === "ROCK") { // Win Conditions
+              humanScore++;
+              const hScore = document.querySelector(".hScore");
+              hScore.innerText = `YOUR SCORE:${humanScore}`;
+              const result = document.querySelector(".result");
+              result.innerText = `You won this round! Your ${humanChoice} beats Computer's ${computerChoice}.`;
+              if (humanScore == 5) {
+                const winner = document.querySelector(".winner");             
+                winner.innerText = 'YOU WON! Reload the page to play again';
+                endGame();
+            }
+              
+        } else if (computerChoice === humanChoice) { // Tie Condition
+              const result = document.querySelector(".result");             
+              result.innerText = `You tied this round! Both players chose ${humanChoice}.`; 
 
-  playGame();
+        } else if (
+          computerChoice === "PAPER" && humanChoice === "ROCK" ||
+          computerChoice === "SCISSORS" && humanChoice === "PAPER" ||
+          computerChoice === "ROCK" && humanChoice === "SCISSORS"){ // Lose Conditions
+              computerScore++;
+              const cScore = document.querySelector(".cScore");
+              cScore.innerText = `COMP SCORE:${computerScore}`;
+              const result = document.querySelector(".result");             
+              result.innerText =`You lost this round! Computer's ${computerChoice} beats your ${humanChoice}.`; 
+              if (computerScore == 5) {
+                const winner = document.querySelector(".winner");             
+                winner.innerText = 'COMPUTER WON! Reload the page to play again';
+                endGame();             
+          }
+          }
+        }
 
-
-  console.log("FINAL SCORE:");
-  console.log(`YOU: ${humanScore}`);
-  console.log(`CPU: ${computerScore}`);
+        function endGame(){ //Create a function to end game when the human or computer reaches 5 points
+            const allButtons = document.querySelectorAll("button");
+            allButtons.forEach(elem => {
+                elem.disabled = true
+            })
+        }
+        
+   
