@@ -1,16 +1,15 @@
+REVISITING ROCK-PAPER-SCISSORS GAME:
 
-My first javascript project from scratch.
+Add a basic UI to the Rock-Paper-Scissors game (previously coded to be played on the console)
 
-This game will be played entirely in the console, by a human player, against the computer.
+In UI, the player should be able to play the game by clicking on buttons rather than typing their answer in a prompt.
 
-The game will keep players' score. The  game will be played round by round, for  5 round and the winner will be declared at the end. 
+Remove the logic that plays exactly five rounds.
 
-First, I  will write a function that randomly returns the result of  “rock”, “paper” or “scissors” from the computer.
+Create three buttons, one for each selection. Add an event listener to the buttons that call your playRound function with the correct playerSelection every time a button is clicked. (Keep the console.logs for this step)
 
-Then, I  will write a function that takes the human's choice and returns it. 
+Add a div for displaying results and change all of console.logs into DOM methods.
 
-Then, I will write variables to keep track of the players score.
- 
-Then, I will write a function that takes the human and computer player choices as arguments, plays a single round, increments the round winner’s score and logs a winner announcement.
+Display the running score, and announce a winner of the game once one player reaches 5 points.
 
-Last, I will  write a function  that calls the game  to play for 5 rounds, keeps track of the scores and declares a winner at the end.
+Refactor (rework/rewrite) the original code to make it work for this.  Reworking old code is an important part of a programmer’s life!
